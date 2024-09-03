@@ -14,9 +14,18 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         $post = post::insert([
-            'title' => 'POST 1',
-            'news_content' => 'Lorem Ipsum',
-            'author' => 1,
+            [
+                'title' => 'POST 1',
+                'news_content' => 'Lorem Ipsum',
+                'author' => 1,
+                'created_at' => now(),
+            ],
+            [
+                'title' => 'POST 1',
+                'news_content' => 'Lorem Ipsum',
+                'author' => 2,
+                'created_at' => now(),
+            ]
         ]);
     }
 }

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DetailPostResource;
+use App\Http\Resources\PostResource;
 use App\Models\post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     function allpost(){
-        $post = post::all();
-        return response()->json([
-            'message' => 'List Data Post',
-            'data' => $post
-        ]);
+        $posts = post::all();
+        return PostResource::collection($posts);
+    }
+
+    function detailPost($id){
+        $post = post::findOrFail($id);
+        return new DetailPostResource($post);
     }
 }

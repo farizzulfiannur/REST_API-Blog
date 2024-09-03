@@ -22,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user',[UserController::class,'allUser'])->name('alluser');
 Route::get('/post',[PostController::class,'allpost'])->name('allpost');
+Route::get('/post/detail/{id}',[PostController::class,'detailPost'])->name('detailPost');
