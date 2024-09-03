@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -20,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/user',[UserController::class,'allUser'])->name('alluser');
-Route::get('/post',[PostController::class,'allpost'])->name('allpost');
-Route::get('/post/detail/{id}',[PostController::class,'detailPost'])->name('detailPost');
+Route::post('/',[loginController::class,'login'])->name('login');
+Route::get('/logout',[loginController::class,'logout'])->name('logout')->middleware(['auth:sanctum']);
+
+Route::get('/user',[UserController::class,'allUser'])->name('alluser')->middleware(['auth:sanctum']);
+Route::get('/post',[PostController::class,'allpost'])->name('allpost')->middleware(['auth:sanctum']);
+Route::get('/post/detail/{id}',[PostController::class,'detailPost'])->name('detailPost')->middleware(['auth:sanctum']);;
+
+

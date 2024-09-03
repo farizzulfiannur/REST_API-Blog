@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('news_content')->nullable();
             $table->unsignedBigInteger('author');
             $table->timestamps();
-
             $table->foreign('author')->references('id')->on('users')->onDelete('cascade');
         });
     }
