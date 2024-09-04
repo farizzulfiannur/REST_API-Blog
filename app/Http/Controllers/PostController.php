@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\DetailPostResource;
 use App\Http\Resources\PostResource;
+use App\Models\comment;
 use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,9 +79,9 @@ class PostController extends Controller
         }
     }
 
-    function deletePost($id){
+    function deletePost($postid){
         try{
-            post::destroy($id);
+            comment::destroy($postid);
             return response()->json([
                 'message' => 'Successfully Deleted Post'
             ]);
