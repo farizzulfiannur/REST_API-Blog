@@ -17,15 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::post('/',[loginController::class,'login'])->name('login');
 Route::get('/logout',[loginController::class,'logout'])->name('logout')->middleware(['auth:sanctum']);
 
 Route::get('/user',[UserController::class,'allUser'])->name('alluser')->middleware(['auth:sanctum']);
 Route::get('/post',[PostController::class,'allpost'])->name('allpost')->middleware(['auth:sanctum']);
-Route::get('/post/detail/{id}',[PostController::class,'detailPost'])->name('detailPost')->middleware(['auth:sanctum']);;
-
-
+Route::get('/post/detail/{id}',[PostController::class,'detailPost'])->name('detailPost')->middleware(['auth:sanctum']);
+Route::post('/post/add',[PostController::class,'addpost'])->name('addpost')->middleware(['auth:sanctum']);
+Route::post('post/update/{id}',[PostController::class,'updatePost'])->name('updatePost')->middleware(['auth:sanctum','postMiddleware']);
+Route::get('/post/delete/{id}',[PostController::class,'deletePost'])->name('deletePost')->middleware(['auth:sanctum','postMiddleware']);
